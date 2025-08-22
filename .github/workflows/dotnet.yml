@@ -1,4 +1,4 @@
-name: .NET Single CS Build
+name: .NET Multi-CS Build
 
 on:
   push:
@@ -19,14 +19,20 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
-      - name: Create temporary console project
-        run: dotnet new console -n TempApp --force
-
-      - name: Copy C# files into project
-        run: cp *.cs TempApp/
-
-      - name: Build project
-        run: dotnet build TempApp --configuration Release
-
-      - name: Run project
-        run: dotnet run --project TempApp --configuration Release
+      - name: Build and run each C# file
+        run: |
+          for file in *.cs; do
+            projname=$(basename "$file" .cs)
+            echo "===== Building and running $file ====="
+            
+            # Create new console project
+            dotnet new console -n $projname --force
+            
+            # Replace the generated Program.cs with our file
+            rm $projname/Program.cs
+            cp "$file" $projname/
+            
+            # Build and run
+            dotnet build $projname --configuration Release
+            dotnet run --project $projname --configuration Release
+          done
