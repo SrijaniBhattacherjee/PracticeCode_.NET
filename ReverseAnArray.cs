@@ -43,8 +43,6 @@ namespace ArraysPractice
 
         public class ReverseArrayForLoop
         {
-            public static void Main(string[] args)
-            {
                 int[] numbers = { 1, 2, 3, 4, 5 };
 
                 for (int i = 0; i < numbers.Length / 2; i++)
@@ -59,7 +57,6 @@ namespace ArraysPractice
                 {
                     Console.Write(numbers[i] + ", ");
                 }
-            }
         }
 
     }
