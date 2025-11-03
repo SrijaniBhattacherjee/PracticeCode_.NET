@@ -14,4 +14,6 @@
 9. DuplicateElementsInArray.cs
 10. CountFrequenciesElements.cs
 11. SortingAnArray.cs
+12. CountOfVowels.cs
+13. StringPalindrome.cs
 
